@@ -5,6 +5,7 @@ import org.mockito.Mockito;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
 
 class RestaurantTest {
     Restaurant restaurant;
@@ -86,4 +87,33 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>VIEW ORDER VALUE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    @Test
+    public void when_no_item_is_selected_from_menu_order_value_should_be_0(){
+
+        List<String> menuItems = new ArrayList<String>();
+
+        int orderValue = restaurant.getOrderValue(menuItems);
+
+        assertEquals(0,orderValue);
+
+    }
+
+    @Test
+    public void when_multiple_items_selected_from_menu_order_value_should_be_sum_of_price_of_selected_items(){
+
+        List<String> menuItems = new ArrayList<String>();
+        menuItems.add("Sweet corn soup");
+        menuItems.add("Vegetable lasagne");
+
+        int orderValue = restaurant.getOrderValue(menuItems);
+
+        assertEquals(388, orderValue);
+    }
+
+    //<<<<<<<<<<<<<<<<<<<<<<<VIEW ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
